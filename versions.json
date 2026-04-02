@@ -1,5 +1,10 @@
 [
   {
+    "version": "pr-1",
+    "title": "pr-1",
+    "aliases": []
+  },
+  {
     "version": "branch-docs_add_build_options",
     "title": "branch-docs_add_build_options",
     "aliases": []
