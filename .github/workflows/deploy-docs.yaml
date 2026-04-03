@@ -5,12 +5,6 @@ on:
     branches:
       - main
       - galactic
-    paths:
-      - mkdocs.yaml
-      - "**/*.md"
-      - "**/*.svg"
-      - "**/*.png"
-      - "**/*.jpg"
   pull_request_target:
     types:
       - opened
@@ -28,22 +22,32 @@ jobs:
     needs: prevent-no-label-execution
     if: ${{ needs.prevent-no-label-execution.outputs.run == 'true' }}
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v5
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-    - name: Install dependencies
-      run: |
-        pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-macros-plugin mkdocs-same-dir pymdown-extensions mkdocs-exclude
-    - name: Build docs (Not Deploy)
-      run: |
-        mkdocs build --clean
-    - name: Upload built site as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: built-docs-html
-        path: site/  # mkdocs build で生成されたディレクトリ
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          # pull_request_targetの場合、PRの最新コードを取得するために以下を指定
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          # 画像で見せていただいた requirements.txt を使用
+          pip install -r deploy-docs/mkdocs-requirements.txt
+
+      - name: Build docs (Not Deploy)
+        run: |
+          # 本家へのデプロイ（mike）は使わず、純粋にビルドのみ行う
+          mkdocs build --clean
+
+      - name: Upload built site as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-docs-html
+          path: site/
