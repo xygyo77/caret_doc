@@ -40,6 +40,9 @@ jobs:
         run: |
           # 画像で見せていただいた requirements.txt を使用
           pip install -r deploy-docs/mkdocs-requirements.txt
+      
+      - name: Show installed versions
+        run: pip list
 
       - name: Build docs (Not Deploy)
         run: |
