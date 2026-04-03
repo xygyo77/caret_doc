@@ -14,3 +14,4 @@ plantuml-markdown
 pymdown-extensions
 python-markdown-math
 tabulate
+Pygments==2.18.0
