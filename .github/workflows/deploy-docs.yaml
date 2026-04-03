@@ -28,15 +28,22 @@ jobs:
     needs: prevent-no-label-execution
     if: ${{ needs.prevent-no-label-execution.outputs.run == 'true' }}
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Deploy docs
-        uses: autowarefoundation/autoware-github-actions/deploy-docs@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          latest: ${{ github.event_name != 'pull_request_target' && github.ref_name == github.event.repository.default_branch }}
+    - name: Check out repository
+      uses: actions/checkout@v5
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: |
+        pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-macros-plugin mkdocs-same-dir pymdown-extensions mkdocs-exclude
+    - name: Build docs (Not Deploy)
+      run: |
+        mkdocs build --clean
+    - name: Upload built site as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: built-docs-html
+        path: site/  # mkdocs build で生成されたディレクトリ
