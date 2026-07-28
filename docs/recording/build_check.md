@@ -11,7 +11,7 @@ For building the application with CARET/rclcpp, CARET's `local_setup.bash` shoul
 ```sh
 cd <path-to-workspace>
 
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source ~/ros2_caret_ws/install/local_setup.bash  # please keep the order after ROS 2's setup.bash
 
 colcon build --symlink-install --cmake-args -DBUILD_TESTING=OFF

@@ -16,7 +16,7 @@ Two terminals are needed for this method; one for executing a target application
 
      ```sh
      # Environment settings (keep the order as below)
-     source /opt/ros/humble/setup.bash
+     source /opt/ros/jazzy/setup.bash
      source ~/ros2_caret_ws/install/local_setup.bash
      source ~/ros2_ws/install/local_setup.bash
      ```
@@ -52,7 +52,7 @@ Two terminals are needed for this method; one for executing a target application
    - Press "Enter" key to start a session
 
    ```sh
-   source /opt/ros/humble/setup.bash
+   source /opt/ros/jazzy/setup.bash
    source ~/ros2_caret_ws/install/local_setup.bash
 
    # (Optional) Set a destination directory
@@ -130,7 +130,7 @@ You can start LTTng session using ROS launch system. When you have started a tar
    - Environment settings are still needed, but all operations are performed in just one terminal
 
    ```sh
-   source /opt/ros/humble/setup.bash
+   source /opt/ros/jazzy/setup.bash
    source ~/ros2_caret_ws/install/local_setup.bash
    source ~/ros2_ws/install/local_setup.bash
 

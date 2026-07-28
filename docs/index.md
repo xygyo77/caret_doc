@@ -9,7 +9,7 @@ Features:
 - Low overhead with LTTng-based tracepoints for sampling events in ROS/DDS layer
 - Flexible tracepoints added by function hooking with LD_PRELOAD
 - Python-based API for flexible data analysis and visualization
-- Application-layer events tracing by cooperation with TILDE, runtime message tracer
+- Runtime message tracer
 
 Capabilities:
 
@@ -24,8 +24,8 @@ Capabilities:
 - Search of target paths to trace
 - Trace of application events like consumption of buffered topic message
   - `/tf` (planned for v0.3.x release)
-  - `message_filters` (supported by TILDE)
-  - `image_transport` (supported by TILDE)
+  - `message_filters`
+  - `image_transport`
 
 ## Tracing flow with CARET
 

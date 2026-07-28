@@ -58,16 +58,16 @@ The packages installed here are only those related to trace data analysis.
 
 ```bash
 sudo apt install -y \
-  ros-humble-caret-analyze \
-  ros-humble-caret-analyze-cpp-impl \
-  ros-humble-ros2caret \
-  ros-humble-caret-msgs
+  ros-jazzy-caret-analyze \
+  ros-jazzy-caret-analyze-cpp-impl \
+  ros-jazzy-ros2caret \
+  ros-jazzy-caret-msgs
 ```
 
 You can confirm that the installation was successful by the following command.
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 ros2 pkg list | grep caret
 # caret_analyze
 # caret_analyze_cpp_impl

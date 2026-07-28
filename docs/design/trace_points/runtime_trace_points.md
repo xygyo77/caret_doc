@@ -142,8 +142,7 @@ Sampled items
 
 <prettier-ignore-start>
 !!!Note
-    Not available after iron.
-<prettier-ignore-end>
+    <prettier-ignore-end>
 
 ---
 
@@ -225,7 +224,7 @@ Sampled items
 
 <prettier-ignore-start>
 !!!Note
-    Only for iron or later and intra communication.
+    Only for Jazzy or later and intra communication.
 <prettier-ignore-end>
 
 ---
@@ -242,7 +241,7 @@ Sampled items
 
 <prettier-ignore-start>
 !!!Note
-    Only for iron or later and intra communication.
+    Only for Jazzy or later and intra communication.
 <prettier-ignore-end>
 
 ---

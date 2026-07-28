@@ -7,7 +7,7 @@ CARET provides CLI tools which can be utilized at recording process.
       CARET environment settings need to be performed to use these CLI tools by the following commands.
 
       ```bash
-      source /opt/ros/humble/setup.bash
+      source /opt/ros/jazzy/setup.bash
       source ~/ros2_caret_ws/install/local_setup.bash
       ```
 
@@ -163,7 +163,6 @@ Trace duration          | 0:01:00
  ros2:rcl_init                                     |                        1
  ros2:rcl_client_init                              |                        0
  ros2:dispatch_intra_process_subscription_callback |                        0
- ros2_caret:tilde_subscribe_added                  |                        0
  ros2_caret:tilde_subscribe                        |                        0
  ros2_caret:tilde_publisher_init                   |                        0
  ros2_caret:tilde_publish                          |                        0
@@ -236,7 +235,6 @@ Filtered trace duration | 0:00:29
  ros2:rcl_init                                     |                        1
  ros2:rcl_client_init                              |                        0
  ros2:dispatch_intra_process_subscription_callback |                        0
- ros2_caret:tilde_subscribe_added                  |                        0
  ros2_caret:tilde_subscribe                        |                        0
  ros2_caret:tilde_publisher_init                   |                        0
  ros2_caret:tilde_publish                          |                        0

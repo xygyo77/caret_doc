@@ -63,8 +63,8 @@ export PYTHONWARNINGS=ignore:"setup.py install is deprecated.",ignore:"easy_inst
     - ``undefined reference to `ros_trace_dispatch_subscription_callback'``
     - and so on
 - Cause
-  - `~/ros2_caret_ws/install/tracetools/lib/libtracetools.so` needs to be linked, but `/opt/ros/humble/lib/libtracetools.so` is referred when using some packages
-  - For instance, `pcl_ros` package has `/opt/ros/humble/share/pcl_ros/cmake/export_pcl_rosExport.cmake` which enforces `/opt/ros/humble/lib/libtracetools.so` to be linked
+  - `~/ros2_caret_ws/install/tracetools/lib/libtracetools.so` needs to be linked, but `/opt/ros/jazzy/lib/libtracetools.so` is referred when using some packages
+  - For instance, `pcl_ros` package has `/opt/ros/jazzy/share/pcl_ros/cmake/export_pcl_rosExport.cmake` which enforces `/opt/ros/jazzy/lib/libtracetools.so` to be linked
 - Workaround 1
   - Please try the following build options to ensure that the CARET tracetools library is used by explicitly setting `-Dtracetools_DIR`
   - This can occur especially when the target application is built with `--merge-install`
@@ -84,22 +84,22 @@ colcon build --symlink-install --cmake-args -DBUILD_TESTING=OFF \
 ```
 
 - Workaround 2
-  - Remove `/opt/ros/humble/lib/libtracetools.so;` from `/opt/ros/humble/share/pcl_ros/cmake/export_pcl_rosExport.cmake`
+  - Remove `/opt/ros/jazzy/lib/libtracetools.so;` from `/opt/ros/jazzy/share/pcl_ros/cmake/export_pcl_rosExport.cmake`
 
 ```sh
-sudo cp /opt/ros/humble/share/pcl_ros/cmake/export_pcl_rosExport.cmake /opt/ros/humble/share/pcl_ros/cmake/export_pcl_rosExport.cmake.bak
-sudo sed -i -e 's/\/opt\/ros\/humble\/lib\/libtracetools.so;//g' /opt/ros/humble/share/pcl_ros/cmake/export_pcl_rosExport.cmake
+sudo cp /opt/ros/jazzy/share/pcl_ros/cmake/export_pcl_rosExport.cmake /opt/ros/jazzy/share/pcl_ros/cmake/export_pcl_rosExport.cmake.bak
+sudo sed -i -e 's/\/opt\/ros\/humble\/lib\/libtracetools.so;//g' /opt/ros/jazzy/share/pcl_ros/cmake/export_pcl_rosExport.cmake
 ```
 
 - Workaround 3
   - If the error persists after applying workaround 2, modify all libraries
 
 ```sh
-sudo grep -rl '/opt/ros/humble/lib/libtracetools.so;' /opt/ros/humble/share --include="*.cmake" |
+sudo grep -rl '/opt/ros/jazzy/lib/libtracetools.so;' /opt/ros/jazzy/share --include="*.cmake" |
     while read -r f; do
         echo "Delete reference to libtracetools from $f"
         sudo cp "$f" "$f.bak"
-        sudo sed -i 's|/opt/ros/humble/lib/libtracetools.so;||g' "$f"
+        sudo sed -i 's|/opt/ros/jazzy/lib/libtracetools.so;||g' "$f"
     done
 ```
 
@@ -109,31 +109,31 @@ sudo grep -rl '/opt/ros/humble/lib/libtracetools.so;' /opt/ros/humble/share --in
   - The following error happens when building a target application
 
 ```sh
-/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp: In member function ‘void rclcpp::Publisher<MessageT, AllocatorT>::do_inter_process_publish(const ROSMessageType&)’:
-/opt/ros/humble/include/rclcpp/rclcpp/publisher.hpp:452:5: error: too few arguments to function ‘void ros_trace_rclcpp_publish(const void*, const void*, uint64_t)’
+/opt/ros/jazzy/include/rclcpp/rclcpp/publisher.hpp: In member function ‘void rclcpp::Publisher<MessageT, AllocatorT>::do_inter_process_publish(const ROSMessageType&)’:
+/opt/ros/jazzy/include/rclcpp/rclcpp/publisher.hpp:452:5: error: too few arguments to function ‘void ros_trace_rclcpp_publish(const void*, const void*, uint64_t)’
   452 |     TRACEPOINT(rclcpp_publish, nullptr, static_cast<const void *>(&msg));
 ```
 
 - Cause
   - To build with CARET, caret/rclcpp should be used. However, in case rclcpp in SYSTEM ( `/opt/ros/humble` ) is used for some reasons, build will fail
-  - Take `pcl_ros` for example, `/opt/ros/humble/share/pcl_ros/cmake/export_pcl_rosExport.cmake` enforces `/opt/ros/humble/include/rclcpp` to be referred. So that caret/rclcpp is not used and building a package depending on `pcl_ros` will fail
+  - Take `pcl_ros` for example, `/opt/ros/jazzy/share/pcl_ros/cmake/export_pcl_rosExport.cmake` enforces `/opt/ros/jazzy/include/rclcpp` to be referred. So that caret/rclcpp is not used and building a package depending on `pcl_ros` will fail
 - Workaround 1
-  - Remove `/opt/ros/humble/include/rclcpp;` from `/opt/ros/humble/share/pcl_ros/cmake/export_pcl_rosExport.cmake`
+  - Remove `/opt/ros/jazzy/include/rclcpp;` from `/opt/ros/jazzy/share/pcl_ros/cmake/export_pcl_rosExport.cmake`
 
 ```sh
-sudo cp /opt/ros/humble/share/pcl_ros/cmake/export_pcl_rosExport.cmake /opt/ros/humble/share/pcl_ros/cmake/export_pcl_rosExport.cmake.bak2
-sudo sed -i -e 's/\/opt\/ros\/humble\/include\/rclcpp;//g' /opt/ros/humble/share/pcl_ros/cmake/export_pcl_rosExport.cmake
+sudo cp /opt/ros/jazzy/share/pcl_ros/cmake/export_pcl_rosExport.cmake /opt/ros/jazzy/share/pcl_ros/cmake/export_pcl_rosExport.cmake.bak2
+sudo sed -i -e 's/\/opt\/ros\/humble\/include\/rclcpp;//g' /opt/ros/jazzy/share/pcl_ros/cmake/export_pcl_rosExport.cmake
 ```
 
 - Workaround 2
   - If the error persists after applying workaround 1, modify all libraries
 
 ```sh
-sudo grep -rl '/opt/ros/humble/include/rclcpp;' /opt/ros/humble/share --include="*.cmake" |
+sudo grep -rl '/opt/ros/jazzy/include/rclcpp;' /opt/ros/jazzy/share --include="*.cmake" |
     while read -r f; do
         echo "Delete reference to rclcpp from $f"
         sudo cp "$f" "$f.bak"
-        sudo sed -i 's|/opt/ros/humble/include/rclcpp;||g' "$f"
+        sudo sed -i 's|/opt/ros/jazzy/include/rclcpp;||g' "$f"
     done
 ```
 
@@ -156,7 +156,7 @@ sudo grep -rl '/opt/ros/humble/include/rclcpp;' /opt/ros/humble/share --include=
   - Remove `SYSTEM` from dependencies in ament_cmake_auto
 
 ```sh
-cd /opt/ros/humble/share/ament_cmake_auto/cmake/
+cd /opt/ros/jazzy/share/ament_cmake_auto/cmake/
 sudo cp ament_auto_add_executable.cmake ament_auto_add_executable.cmake.bak
 sudo cp ament_auto_add_library.cmake ament_auto_add_library.cmake.bak
 sudo sed -i -e 's/SYSTEM//g' ament_auto_add_executable.cmake

@@ -22,7 +22,7 @@ Add the `--record-clock` option to the `ros2 caret record` command.
 <prettier-ignore-end>
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source ~/ros2_caret_ws/install/local_setup.bash
 
 ros2 caret record --record-clock
@@ -96,7 +96,7 @@ The following steps can be performed either with or without CARET. If you have b
 1. Open a terminal to run a target application to record rosbag
 
    ```sh
-   source /opt/ros/humble/setup.bash
+   source /opt/ros/jazzy/setup.bash
    source ~/ros2_caret_ws/install/local_setup.bash
    source ~/ros2_ws/install/local_setup.bash
    export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
@@ -107,7 +107,7 @@ The following steps can be performed either with or without CARET. If you have b
 2. Open another terminal to record rosbag
 
    ```sh
-   source /opt/ros/humble/setup.bash
+   source /opt/ros/jazzy/setup.bash
    source ~/ros2_caret_ws/install/local_setup.bash
    source ~/ros2_ws/install/local_setup.bash
 
@@ -138,7 +138,7 @@ The following steps can be performed either with or without CARET. If you have b
    In the launch file, `use_sim_time` is set to true and source nodes are disabled.
 
    ```sh
-    source /opt/ros/humble/setup.bash
+    source /opt/ros/jazzy/setup.bash
     source ~/ros2_caret_ws/install/local_setup.bash
     source ~/ros2_ws/install/local_setup.bash
     export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
@@ -149,7 +149,7 @@ The following steps can be performed either with or without CARET. If you have b
 2. Open another terminal to record the performance data with `/clock` topic.
 
    ```sh
-    source /opt/ros/humble/setup.bash
+    source /opt/ros/jazzy/setup.bash
     source ~/ros2_caret_ws/install/local_setup.bash
     source ~/ros2_ws/install/local_setup.bash
 
@@ -159,7 +159,7 @@ The following steps can be performed either with or without CARET. If you have b
 3. Open another terminal to play the rosbag
 
    ```sh
-    source /opt/ros/humble/setup.bash
+    source /opt/ros/jazzy/setup.bash
     source ~/ros2_caret_ws/install/local_setup.bash
     source ~/ros2_ws/install/local_setup.bash
 

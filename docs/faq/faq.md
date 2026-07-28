@@ -15,7 +15,7 @@
 In case CLI tool execution fails, please make sure to perform CARET environment settings
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source ~/ros2_caret_ws/install/local_setup.bash
 
 ros2 caret check_caret_rclcpp <path-to-workspace>
@@ -208,7 +208,7 @@ CARET does not take "ROS_DOMAIN_ID" into account. Depending on the measurement m
 
    ```bash
    cd /path/to/workspace
-   source /opt/ros/humble/setup.bash
+   source /opt/ros/jazzy/setup.bash
    source ~/ros2_caret_ws/install/local_setup.bash
    colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
    ```
