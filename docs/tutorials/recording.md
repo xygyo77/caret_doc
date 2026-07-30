@@ -9,7 +9,7 @@ See [Recording](../recording/index.md) to find more details.
 
 To trace a target application, simply build the target with ROS 2. CARET provides tracepoints at runtime via `LD_PRELOAD`, so you do **not** need to build the application with a forked rclcpp.
 
-``` bash
+```bash
 mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws
 
@@ -26,7 +26,7 @@ colcon build --symlink-install --packages-up-to caret_demos --cmake-args -DBUILD
 
 Run the target as shown in the following.
 
-``` bash
+```bash
 # Environment settings
 ~/ros2_caret_ws/setenv_caret.bash
 
@@ -41,7 +41,7 @@ ros2 launch caret_demos end_to_end_sample.launch.py
 
 Open a new terminal and record the performance data.
 
-``` bash
+```bash
 source /opt/ros/jazzy/setup.bash
 source ~/ros2_caret_ws/install/local_setup.bash
 
@@ -64,3 +64,4 @@ You can check whether tracing is successful or not with `ros2 caret check_ctf` c
 ros2 caret check_ctf ~/ros2_ws/evaluate/e2e_sample/
 
 # If there are problems with the recorded data, warning messages will be displayed.
+```

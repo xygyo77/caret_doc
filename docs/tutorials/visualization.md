@@ -27,7 +27,7 @@ This section will show basic flow to visualize data with Jupyter notebook.
 
    Locate trace data on Jupyter notebook as well as the architecture file.
 
-   ``` python
+   ```python
    from caret_analyze import Architecture, Application, Lttng
 
    # load the architecture file which is created in the previous page

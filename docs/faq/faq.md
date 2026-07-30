@@ -37,6 +37,7 @@ With the release of numpy2, the following warnings may occur depending on the en
 
       In actual ROS 2 and trace-collection environments such as Autoware, system-wide dependencies are almost always strongly tied to the NumPy 1.x series.
       While updating related packages (numexpr, bottleneck, matplotlib, etc.) may bypass the warning in a pure Python environment, migration to or compatibility with NumPy 2.x is not guaranteed or proven in practical Autoware environments.
+
 <prettier-ignore-end>
 
 ## Recording

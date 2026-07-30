@@ -2,7 +2,7 @@
 
 Please download [the architecture file](https://raw.githubusercontent.com/tier4/caret_demos/main/samples/end_to_end_sample/architecture_jazzy.yaml) and use it for visualization.
 
-``` bash
+```bash
 cd ~/ros2_ws/evaluate
 wget https://raw.githubusercontent.com/tier4/caret_demos/main/samples/end_to_end_sample/architecture_jazzy.yaml
 ```

@@ -13,7 +13,7 @@ CARET is confirmed to run on the platforms shown in the following table with sup
 
 ## Installation
 
-Installation using meta repository is the least time-consuming way to install CARET.  
+Installation using meta repository is the least time-consuming way to install CARET.
 
 Since Ubuntu 24.04 restricts pip installations into the system environment (PEP 668), you need to acknowledge this by setting an environment variable(PIP_BREAK_SYSTEM_PACKAGES) before running the setup script.
 
