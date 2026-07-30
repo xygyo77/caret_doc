@@ -16,25 +16,9 @@ Two terminals are needed for this method; one for executing a target application
 
      ```sh
      # Environment settings
-     source /opt/ros/jazzy/setup.bash
+     ~/ros2_caret_ws/setenv_caret.bash
+     # source caret_demos
      source ~/ros2_ws/install/local_setup.bash
-     ```
-
-   - Set `LD_PRELOAD` to enable tracepoints provided by function hook
-
-     ```sh
-     export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
-     ```
-
-   - (Optional) Apply [trace filtering](./trace_filtering.md). With configuration of trace filtering, CARET can ignore unnecessary nodes/topics. This function is useful for a large application
-
-     ```sh
-     # Apply filter directly
-     export CARET_IGNORE_NODES="/rviz*"
-     export CARET_IGNORE_TOPICS="/clock:/parameter_events"
-
-     # Apply filter using a setting file
-     source ./caret_topic_filter.bash
      ```
 
    - Launch the target application
@@ -42,6 +26,12 @@ Two terminals are needed for this method; one for executing a target application
      ```sh
      ros2 run caret_demos end_to_end_sample
      ```
+
+<prettier-ignore-start>
+!!! info "Environment Setup"
+    In Jazzy, CARET provides tracepoints via `LD_PRELOAD` at runtime. 
+    While sourcing CARET's local setup is not strictly required for tracepoints alone, you should source ROS 2 and your target workspace as usual (or use a custom setup script like `setenv_caret.bash` to configure `LD_PRELOAD` and other environment variables).
+<prettier-ignore-end>
 
 2. Open another terminal and start a LTTng session with the following commands
    - Trace data will be stored into the directory whose path is defined as `{ROS_TRACE_DIR}/{SESSION_NAME}`.
@@ -52,6 +42,7 @@ Two terminals are needed for this method; one for executing a target application
 
    ```sh
    source /opt/ros/jazzy/setup.bash
+   source ~/ros2_caret_ws/install/local_setup.bash
 
    # (Optional) Set a destination directory
    mkdir -p ~/ros2_ws/evaluate
@@ -77,11 +68,6 @@ Two terminals are needed for this method; one for executing a target application
 <prettier-ignore-start>
 !!!info
       You may find that size of recorded data is strangely smaller than expected after updating LTTng to 2.13 if you apply CARET to a large application like [Autoware](https://github.com/autowarefoundation/autoware) which has hundreds of nodes. You have to suspect that maximum number of file descriptors is not enough in the case. You can check the number with `ulimit -n` command. The default maximum number is 1024, but it is not enough for the large application. You can avoid this problem by enlarging the maximum number with executing the command; `ulimit -n 65536`.
-<prettier-ignore-end>
-
-<prettier-ignore-start>
-!!!info
-      To trace multi-host system, you need to follow these steps on hosts which contain nodes you want to trace.
 <prettier-ignore-end>
 
 ## Starting LTTng session via ROS launch
@@ -128,19 +114,15 @@ You can start LTTng session using ROS launch system. When you have started a tar
    - Environment settings are still needed, but all operations are performed in just one terminal
 
    ```sh
-   source /opt/ros/jazzy/setup.bash
-   source ~/ros2_ws/install/local_setup.bash
-
-   export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
-
-   source ./caret_topic_filter.bash
+   ~/ros2_caret_ws/setenv_caret.bash
+   source ~/caret_ws/install/local_setup.bash
 
    ros2 launch caret_demos end_to_end_sample_with_lttng_session.launch.py
    ```
 
 <prettier-ignore-start>
 !!!info
-      To trace multi-host system, you need to follow these steps on hosts which contain nodes you want to trace.
+      To trace a multi-host system, it is recommended that you perform this procedure on a host that contains the node you want to trace.
 <prettier-ignore-end>
 
 ## Advanced: Useful settings for launch file

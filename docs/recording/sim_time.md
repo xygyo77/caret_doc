@@ -23,6 +23,7 @@ Add the `--record-clock` option to the `ros2 caret record` command.
 
 ```bash
 source /opt/ros/jazzy/setup.bash
+source ~/ros_caret_ws/install/local_setup.bash
 
 ros2 caret record --record-clock
 ```
@@ -30,7 +31,7 @@ ros2 caret record --record-clock
 You can check whether `/clock` is successfully recorded by the following command.
 
 ```bash
-babeltrace <path-to-trace-data> | cut -d' ' -f 4 | sort -u | grep sim_time
+babeltrace2 <path-to-trace-data> | cut -d' ' -f 4 | sort -u | grep sim_time
 ```
 
 ```bash
@@ -90,21 +91,18 @@ Explanation below assumes CARET is installed to `~/ros2_caret_ws` and the sample
 
 ### Record rosbag
 
-The following steps can be performed either with or without CARET. If you have built a target application without CARET, you don't need to set environment for CARET and LD_PRELOAD.
-
 1. Open a terminal to run a target application to record rosbag
 
-   ```sh
-    source /opt/ros/jazzy/setup.bash
+   ```bash
+    ~/ros2_caret_ws/setenv_caret.bash
     source ~/ros2_ws/install/local_setup.bash
-    export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
-
+    
     ros2 run caret_demos end_to_end_sample
-    ```
+   ```
 
 2. Open another terminal to record rosbag
 
-   ```sh
+   ```bash
     source /opt/ros/jazzy/setup.bash
     source ~/ros2_ws/install/local_setup.bash
 
@@ -128,32 +126,36 @@ The following steps can be performed either with or without CARET. If you have b
                    Topic: /topic1 | Type: sensor_msgs/msg/Image | Count: 97 | Serialization Format: cdr
    ```
 
+<prettier-ignore-start>
+!!! note "Environment Setup for Jazzy"
+    You can perform these steps regardless of CARET. In that case, please delete setenv_caret.bash.
+<prettier-ignore-end>
+
 ### Record trace data
 
 1. Open terminal to run a target application to record trace data with CARET
 
-   In the launch file, `use_sim_time` is set to true and source nodes are disabled.
+   In the launch file, `use_sim_time` is set to trueare.
 
-    ```sh
-     source /opt/ros/jazzy/setup.bash
+    ```bash
+     ~/ros2_caret_ws/setenv_caret.bash
      source ~/ros2_ws/install/local_setup.bash
-     export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
 
-     ros2 launch caret_demos end_to_end_sample.launch.py use_sim_time:=true use_rosbag:=true
-     ```
+     ros2 launch caret_demos end_to_end_sample.launch.py use_sim_time:=true
+    ```
 
 2. Open another terminal to record the performance data with `/clock` topic.
 
-    ```sh
+     ```bash
      source /opt/ros/jazzy/setup.bash
-     source ~/ros2_ws/install/local_setup.bash
+     source ~/ros2_caret_ws/install/local_setup.bash
 
      ros2 caret record -s e2e_sample --record-clock
      ```
 
 3. Open another terminal to play the rosbag
 
-    ```sh
+    ```bash
      source /opt/ros/jazzy/setup.bash
      source ~/ros2_ws/install/local_setup.bash
 
@@ -165,7 +167,7 @@ The following steps can be performed either with or without CARET. If you have b
 5. Check if `/clock` topic is recorded in trace data as `sim_time`
 
    ```bash
-   babeltrace ~/ros2_ws/evaluate/e2e_sample | cut -d' ' -f 4 | sort -u | grep sim_time
+   babeltrace2 ~/ros2_ws/evaluate/e2e_sample | cut -d' ' -f 4 | sort -u | grep sim_time
    ros2_caret:sim_time:
    ```
 

@@ -5,9 +5,8 @@
 ### Setup fails
 
 - In case you encounter errors during setup or build process, please make sure to use an appropriate branch for your environment
-  - ROS 2 Humble, Ubuntu 22.04: main branch
-  - ROS 2 Iron, Ubuntu 22.04: main branch
-  - ROS 2 Jazzy, Ubuntu 24.04: main branch
+  - ROS 2 Jazzy, Ubuntu 24.04: main branch and release tags
+  - ROS 2 Humble, Ubuntu 22.04: main branch and release tags
 - It's also important to delete `./build` `./install` and `./src` directory before rebuilding CARET if you have built CARET using wrong settings
 
 ### CLI tool doesn't work
@@ -32,11 +31,13 @@ With the release of numpy2, the following warnings may occur depending on the en
 > versions of NumPy, modules must be compiled with NumPy 2.0.
 > Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
 
-To use caret, it is sufficient to update packages using numpy. The packages can be updated by the following command.
+<prettier-ignore-start>
+!!!warning
+      **Important Notice for Autoware and ROS 2 Users**
 
-```bash
-pip3 install -U numexpr bottleneck matplotlib
-```
+      In actual ROS 2 and trace-collection environments such as Autoware, system-wide dependencies are almost always strongly tied to the NumPy 1.x series.
+      While updating related packages (numexpr, bottleneck, matplotlib, etc.) may bypass the warning in a pure Python environment, migration to or compatibility with NumPy 2.x is not guaranteed or proven in practical Autoware environments.
+<prettier-ignore-end>
 
 ## Recording
 
@@ -90,7 +91,7 @@ CARET does not take "ROS_DOMAIN_ID" into account. Depending on the measurement m
 
 ### Parts of results are not outputted
 
-- If certain nodes are not traced but some nodes are traced, some packages may be built without CARET/rclcpp. Please make sure `<depend>rclcpp</depend>` is described in `package.xml`
+- If your system utilizes Agnocast communication, please verify that the Agnocast modules have not been built with LTTng tracing disabled. If LTTng support is disabled in Agnocast, trace points will not be emitted, preventing CARET from collecting execution data for those paths even if the standard ROS 2 nodes are correctly instrumented.
 - Another possibility is that some nodes can't be analyzed due to CARET's limitations:
   - CARET cannot analyze a node which has two or more timer callbacks with the same period time setting
   - CARET cannot analyze a node which has two or more subscription callbacks with the same topic name
@@ -179,14 +180,3 @@ CARET does not take "ROS_DOMAIN_ID" into account. Depending on the measurement m
 - CARET also provides `response_time.to_histogram()` API. It creates histogram assuming a new object appears from point C to point A at intervals of histogram bin size
 
 ![response_time](./imgs/response_time.drawio.png)
-
-### Message flow is broken when using RelayNode
-
-- Message_flow is sometimes broken when using RelayNode.
-  RelayNode uses GenericPublisher and GenericSubscription instead of the usual Publisher and Subscription.
-  These classes do not have the trace points needed for analysis by CARET.
-
-<prettier-ignore-start>
-!!! Note
-    The iron version of caret does not support RelayNode analysis because it does not add trace points for Generic communication.
-<prettier-ignore-end>

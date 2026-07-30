@@ -60,10 +60,7 @@ bins, latency_ns = callback.to_histogram()
 Though this example shows callback latency, CARET serves API to get communication latency.
 `callback.to_dataframe()` will provides `pandas.DataFrame` based object including raw timestamps which is obtained from tracepoints.
 
-<prettier-ignore-start>
-!!! todo
-        Sorry for not providing CARET's API list, but we'll provide it in the near future.
-<prettier-ignore-end>
+For the CARET's API, see [CARET analyze API document](https://tier4.github.io/caret_analyze/latest/).
 
 ## Visualizing latency of node chain with message flow
 

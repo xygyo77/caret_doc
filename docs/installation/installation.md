@@ -9,7 +9,7 @@ CARET is confirmed to run on the platforms shown in the following table with sup
 | Jazzy  | Ubuntu 24.04 | stable-2.13 | 3.12.x | Supported       |
 | Humble | Ubuntu 22.04 | stable-2.13 | 3.10.x | Supported (LTS) |
 
-> **Note:** This documentation mainly focuses on Jazzy. If you are using Humble, please refer to the documentation for v0.7.3 ([tier4.github.io/caret_doc/v0.7.3/installation/installation/](https://tier4.github.io/caret_doc/v0.7.3/installation/installation/)).
+> **Note:** If you are using Humble, please refer to the documentation for v0.7.3 ([v0.7.3 installation](https://tier4.github.io/caret_doc/v0.7.3/installation/installation/)).
 
 ## Installation
 
@@ -84,8 +84,6 @@ CARET uses vcstool to construct workspaces.
 <prettier-ignore-start>
 5. Check whether CARET (ros2-tracing) is enabled.
 <prettier-ignore-end>
-
-CARET inherits some functions from [ros2-tracing](https://github.com/ros2/ros2_tracing).
 
 ```bash
 $ source ~/ros2_caret_ws/install/local_setup.bash

@@ -1,5 +1,10 @@
 # Binary Installation
 
+<prettier-ignore-start>
+!!! warning "Warning"
+    Binaries for jazzy are not ready yet.
+<prettier-ignore-end>
+
 Some caret packages are available as Debian packages.  
 The table below lists the packages that can be installed using binary installation.
 
@@ -56,10 +61,10 @@ The packages installed here are only those related to trace data analysis.
 
 ```bash
 sudo apt install -y \
-  ros-jazzy-caret-analyze \
-  ros-jazzy-caret-analyze-cpp-impl \
-  ros-jazzy-ros2caret \
-  ros-jazzy-caret-msgs
+  ros-humble-caret-analyze \
+  ros-humble-caret-analyze-cpp-impl \
+  ros-humble-ros2caret \
+  ros-humble-caret-msgs
 ```
 
 You can confirm that the installation was successful by the following command.

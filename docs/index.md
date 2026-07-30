@@ -31,12 +31,11 @@ Capabilities:
 
 ![measurement_flow](./imgs/measurement_flow.svg)
 
-CARET gives you capability of tracing your application with introducing new tracepoints to ROS and DDS layer while it utilized original tracepoints for [`ros2_tracing`](https://gitlab.com/ros-tracing/ros2_tracing).
+CARET gives you capability of tracing your application with introducing new tracepoints to ROS and DDS layer, extending the standard ROS 2 tracing capabilities.
 
 CARET is served as only source code, but not as `apt` package, so far.  
 CARET hooks dedicated functions to those defined in dynamic library in order to add tracepoints.  
 Since Jazzy, CARET does **not** require a forked rclcpp; tracepoints are provided via `LD_PRELOAD` at runtime.
-You have to build CARET and your application if you want to use.
 
 After you run your application with CARET, you will get recorded data which includes events, metadata and timestamp. You have to write a configuration file, called architecture file, in which you defines node latency and target path, before you analyze the data set.
 

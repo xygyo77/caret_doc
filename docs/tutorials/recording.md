@@ -28,15 +28,10 @@ Run the target as shown in the following.
 
 ``` bash
 # Environment settings
-source /opt/ros/jazzy/setup.bash
+~/ros2_caret_ws/setenv_caret.bash
+
+# source caret_demos
 source ~/ros2_ws/install/local_setup.bash
-
-# Enable tracepoints which are defined hooked functions.
-export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
-
-# (Optional) Exclude nodes and topics which you are not concerned with
-export CARET_IGNORE_NODES="/rviz*"
-export CARET_IGNORE_TOPICS="/clock:/parameter_events"
 
 # Launch the target application, demos_end_to_end_sample
 ros2 launch caret_demos end_to_end_sample.launch.py
@@ -48,6 +43,7 @@ Open a new terminal and record the performance data.
 
 ``` bash
 source /opt/ros/jazzy/setup.bash
+source ~/ros2_caret_ws/install/local_setup.bash
 
 # set a destination directory. ~/.ros/tracing is default.
 mkdir -p ~/ros2_ws/evaluate
