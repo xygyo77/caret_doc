@@ -29,7 +29,7 @@ Two terminals are needed for this method; one for executing a target application
 
   <prettier-ignore-start>
   !!! info "Environment Setup"
-      In Jazzy, CARET provides tracepoints via `LD_PRELOAD` at runtime. 
+      In Jazzy, CARET provides tracepoints via `LD_PRELOAD` at runtime.
       While sourcing CARET's local setup is not strictly required for tracepoints alone, you should source ROS 2 and your target workspace as usual (or use a custom setup script like `setenv_caret.bash` to configure `LD_PRELOAD` and other environment variables).
   <prettier-ignore-end>
 
