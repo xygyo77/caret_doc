@@ -12,7 +12,7 @@ Explanation in this page assumes CARET is installed to `~/ros2_caret_ws` and the
 Two terminals are needed for this method; one for executing a target application, another for starting a LTTng session.
 
 1. Open a terminal and launch a target application
-   - Perform environment settings. In Jazzy, CARET provides tracepoints via `LD_PRELOAD` at runtime, so you do **not** need to source CARET's `local_setup.bash`. Simply source ROS 2's setup and the target workspace.
+   - Perform environment settings. In Jazzy, since CARET provides tracepoints at runtime via `LD_PRELOAD`, there is **no need** to source CARET’s `local_setup.bash`. However, since there’s no real downside, it’s easier to use `setenv_caret.bash`(CARET’s custom environments setup script) to complete the necessary setup.
 
      ```sh
      # Environment settings
@@ -26,12 +26,6 @@ Two terminals are needed for this method; one for executing a target application
      ```sh
      ros2 run caret_demos end_to_end_sample
      ```
-
-  <prettier-ignore-start>
-  !!! info "Environment Setup"
-      In Jazzy, CARET provides tracepoints via `LD_PRELOAD` at runtime.
-      While sourcing CARET's local setup is not strictly required for tracepoints alone, you should source ROS 2 and your target workspace as usual (or use a custom setup script like `setenv_caret.bash` to configure `LD_PRELOAD` and other environment variables).
-  <prettier-ignore-end>
 
 2. Open another terminal and start a LTTng session with the following commands
    - Trace data will be stored into the directory whose path is defined as `{ROS_TRACE_DIR}/{SESSION_NAME}`.
