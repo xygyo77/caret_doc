@@ -12,12 +12,11 @@ Explanation in this page assumes CARET is installed to `~/ros2_caret_ws` and the
 Two terminals are needed for this method; one for executing a target application, another for starting a LTTng session.
 
 1. Open a terminal and launch a target application
-   - Perform environment settings in the same order as below. CARET's `local_setup.bash` should be applied along with ROS 2's `setup.bash` as the target application refers to CARET/rclcpp
+   - Perform environment settings. In Jazzy, CARET provides tracepoints via `LD_PRELOAD` at runtime, so you do **not** need to source CARET's `local_setup.bash`. Simply source ROS 2's setup and the target workspace.
 
      ```sh
-     # Environment settings (keep the order as below)
+     # Environment settings
      source /opt/ros/jazzy/setup.bash
-     source ~/ros2_caret_ws/install/local_setup.bash
      source ~/ros2_ws/install/local_setup.bash
      ```
 
@@ -53,7 +52,6 @@ Two terminals are needed for this method; one for executing a target application
 
    ```sh
    source /opt/ros/jazzy/setup.bash
-   source ~/ros2_caret_ws/install/local_setup.bash
 
    # (Optional) Set a destination directory
    mkdir -p ~/ros2_ws/evaluate
@@ -131,7 +129,6 @@ You can start LTTng session using ROS launch system. When you have started a tar
 
    ```sh
    source /opt/ros/jazzy/setup.bash
-   source ~/ros2_caret_ws/install/local_setup.bash
    source ~/ros2_ws/install/local_setup.bash
 
    export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)

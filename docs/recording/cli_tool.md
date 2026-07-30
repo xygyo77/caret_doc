@@ -8,24 +8,9 @@ CARET provides CLI tools which can be utilized at recording process.
 
       ```bash
       source /opt/ros/jazzy/setup.bash
-      source ~/ros2_caret_ws/install/local_setup.bash
       ```
 
 <prettier-ignore-end>
-
-## Build results validation
-
-This command checks whether a target application is successfully built with CARET/rclcpp. ([See details](./build_check.md#check-whether-caretrclcpp-is-applied-to-each-package))
-
-```bash
-ros2 caret check_caret_rclcpp <path-to-workspace>
-```
-
-```bash
----Output text as below---
-
-INFO    : 2022-09-29 20:18:43 | All packages are built using caret-rclcpp.
-```
 
 ## Recording
 

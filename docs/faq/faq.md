@@ -16,9 +16,6 @@ In case CLI tool execution fails, please make sure to perform CARET environment 
 
 ```bash
 source /opt/ros/jazzy/setup.bash
-source ~/ros2_caret_ws/install/local_setup.bash
-
-ros2 caret check_caret_rclcpp <path-to-workspace>
 ```
 
 <prettier-ignore-start>
@@ -77,14 +74,11 @@ CARET does not take "ROS_DOMAIN_ID" into account. Depending on the measurement m
 
 ### Result (plot, message_flow, etc.) is not outputted, or there seems something wrong with the result
 
-- Please use the following commands for verification
-  - `ros2 caret check_caret_rclcpp` to check if a target application is built with CARET/rclcpp
+- Please use the following command for verification
   - `ros2 caret check_ctf` to check if tracing data is recorded properly
 - Please make sure the followings:
-  - A target application is built with CARET/rclcpp
   - CARET environment is set properly before running a target application
     - `export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)`
-    - `source ~/ros2_caret_ws/install/local_setup.bash`
   - LTTng trace is started before running a target application
     - `ros2 trace -s e2e_sample -k -u "ros2*"`
     - or consider to use launch file
@@ -191,29 +185,6 @@ CARET does not take "ROS_DOMAIN_ID" into account. Depending on the measurement m
 - Message_flow is sometimes broken when using RelayNode.
   RelayNode uses GenericPublisher and GenericSubscription instead of the usual Publisher and Subscription.
   These classes do not have the trace points needed for analysis by CARET.
-
-- If you want to record nodes that use GenericPublisher or GenericSubscription, you need to rebuild them with [caret-rclcpp](https://github.com/tier4/rclcpp/tree/humble_tracepoint_added) and record them with `--light` option.
-  Here are the steps to rebuild a RelayNode.
-
-1. Clone [topic_tools](https://github.com/ros-tooling/topic_tools) into your workspace. You can choose ros2_caret_ws for this workspace.
-
-   ```bash
-   cd /path/to/workspace
-   mkdir src
-   cd src
-   git clone https://github.com/ros-tooling/topic_tools -b humble
-   ```
-
-2. Build topic_tools with caret-rclcpp.
-
-   ```bash
-   cd /path/to/workspace
-   source /opt/ros/jazzy/setup.bash
-   source ~/ros2_caret_ws/install/local_setup.bash
-   colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
-   ```
-
-Please make sure to source local_setup.bash of this workspace before you run RelayNode.
 
 <prettier-ignore-start>
 !!! Note

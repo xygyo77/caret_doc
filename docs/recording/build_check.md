@@ -2,6 +2,11 @@
 
 # Build with CARET
 
+<prettier-ignore-start>
+!!! Note
+    For ROS 2 distributions after Iron (including Jazzy), CARET does **not** require building a target application with a forked rclcpp. Tracepoints are provided via `LD_PRELOAD` at runtime. This page is for users on Humble.
+<prettier-ignore-end>
+
 ## Build a target application with CARET
 
 A target application should be built with CARET/rclcpp to record trace data. If you have already built the application without CARET/rclcpp, you have to build the application with CARET/rclcpp again.

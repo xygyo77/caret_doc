@@ -23,7 +23,6 @@ Add the `--record-clock` option to the `ros2 caret record` command.
 
 ```bash
 source /opt/ros/jazzy/setup.bash
-source ~/ros2_caret_ws/install/local_setup.bash
 
 ros2 caret record --record-clock
 ```
@@ -96,23 +95,21 @@ The following steps can be performed either with or without CARET. If you have b
 1. Open a terminal to run a target application to record rosbag
 
    ```sh
-   source /opt/ros/jazzy/setup.bash
-   source ~/ros2_caret_ws/install/local_setup.bash
-   source ~/ros2_ws/install/local_setup.bash
-   export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
+    source /opt/ros/jazzy/setup.bash
+    source ~/ros2_ws/install/local_setup.bash
+    export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
 
-   ros2 run caret_demos end_to_end_sample
-   ```
+    ros2 run caret_demos end_to_end_sample
+    ```
 
 2. Open another terminal to record rosbag
 
    ```sh
-   source /opt/ros/jazzy/setup.bash
-   source ~/ros2_caret_ws/install/local_setup.bash
-   source ~/ros2_ws/install/local_setup.bash
+    source /opt/ros/jazzy/setup.bash
+    source ~/ros2_ws/install/local_setup.bash
 
-   ros2 bag record /topic1 /drive
-   ```
+    ros2 bag record /topic1 /drive
+    ```
 
    Here, `/topic1` and `/drive` are source topics of the sample application.
    You can check if rosbag is successfully recorded.
@@ -137,34 +134,31 @@ The following steps can be performed either with or without CARET. If you have b
 
    In the launch file, `use_sim_time` is set to true and source nodes are disabled.
 
-   ```sh
-    source /opt/ros/jazzy/setup.bash
-    source ~/ros2_caret_ws/install/local_setup.bash
-    source ~/ros2_ws/install/local_setup.bash
-    export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
+    ```sh
+     source /opt/ros/jazzy/setup.bash
+     source ~/ros2_ws/install/local_setup.bash
+     export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
 
-    ros2 launch caret_demos end_to_end_sample.launch.py use_sim_time:=true use_rosbag:=true
-   ```
+     ros2 launch caret_demos end_to_end_sample.launch.py use_sim_time:=true use_rosbag:=true
+     ```
 
 2. Open another terminal to record the performance data with `/clock` topic.
 
-   ```sh
-    source /opt/ros/jazzy/setup.bash
-    source ~/ros2_caret_ws/install/local_setup.bash
-    source ~/ros2_ws/install/local_setup.bash
+    ```sh
+     source /opt/ros/jazzy/setup.bash
+     source ~/ros2_ws/install/local_setup.bash
 
-    ros2 caret record -s e2e_sample --record-clock
-   ```
+     ros2 caret record -s e2e_sample --record-clock
+     ```
 
 3. Open another terminal to play the rosbag
 
-   ```sh
-    source /opt/ros/jazzy/setup.bash
-    source ~/ros2_caret_ws/install/local_setup.bash
-    source ~/ros2_ws/install/local_setup.bash
+    ```sh
+     source /opt/ros/jazzy/setup.bash
+     source ~/ros2_ws/install/local_setup.bash
 
-    ros2 bag play rosbag2_2022_09_30-10_57_06 --clock -r 0.2
-   ```
+     ros2 bag play rosbag2_2022_09_30-10_57_06 --clock -r 0.2
+    ```
 
 4. Stop the application and the rosbag
 

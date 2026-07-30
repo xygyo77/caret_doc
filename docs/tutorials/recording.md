@@ -7,7 +7,7 @@ See [Recording](../recording/index.md) to find more details.
 
 ## Building application with CARET
 
-To trace a target application, the target should be built with CARET/rclcpp. If you have already built the target without CARET/rclcpp, you have to build the target with CARET/rclcpp again. For building the application with CARET/rclcpp, CARET's `local_setup.bash` should be applied along with ROS 2's `setup.bash` as shown below.
+To trace a target application, simply build the target with ROS 2. CARET provides tracepoints at runtime via `LD_PRELOAD`, so you do **not** need to build the application with a forked rclcpp.
 
 ``` bash
 mkdir -p ~/ros2_ws/src
@@ -20,15 +20,6 @@ source /opt/ros/jazzy/setup.bash
 colcon build --symlink-install --packages-up-to caret_demos --cmake-args -DBUILD_TESTING=OFF
 ```
 
-The following command allows you to check whether CARET/rclcpp is applied to each package.
-If caret/rclcpp is not applied to the package you want to record, please check which rclcpp is used for the target and your workspace's environment variables.
-
-```bash
-ros2 caret check_caret_rclcpp ~/ros2_ws/
-```
-
-> **Note:** For ROS 2 distributions after Iron, CARET does not require a build using caret-rclcpp.
-
 ## Tracing the sample application with CARET
 
 ### Launching the target application
@@ -36,9 +27,8 @@ ros2 caret check_caret_rclcpp ~/ros2_ws/
 Run the target as shown in the following.
 
 ``` bash
-# Environment settings (keep the order as below)
+# Environment settings
 source /opt/ros/jazzy/setup.bash
-source ~/ros2_caret_ws/install/local_setup.bash
 source ~/ros2_ws/install/local_setup.bash
 
 # Enable tracepoints which are defined hooked functions.
@@ -58,7 +48,6 @@ Open a new terminal and record the performance data.
 
 ``` bash
 source /opt/ros/jazzy/setup.bash
-source ~/ros2_caret_ws/install/local_setup.bash
 
 # set a destination directory. ~/.ros/tracing is default.
 mkdir -p ~/ros2_ws/evaluate
