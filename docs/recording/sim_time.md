@@ -135,7 +135,7 @@ Explanation below assumes CARET is installed to `~/ros2_caret_ws` and the sample
 
 1. Open terminal to run a target application to record trace data with CARET
 
-   In the launch file, `use_sim_time` is set to trueare.
+   In the launch file, `use_sim_time` is set to true.
 
    ```bash
     ~/ros2_caret_ws/setenv_caret.bash

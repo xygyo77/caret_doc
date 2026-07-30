@@ -24,6 +24,8 @@ source /opt/ros/jazzy/setup.bash
 
 ### Import error caused by numpy2
 
+<!-- cspell:words numexpr -->
+
 With the release of numpy2, the following warnings may occur depending on the environment.
 
 > A module that was compiled using NumPy 1.x cannot be run in
