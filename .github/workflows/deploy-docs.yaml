@@ -23,6 +23,8 @@ jobs:
     uses: autowarefoundation/autoware-github-actions/.github/workflows/prevent-no-label-execution.yaml@v1
     with:
       label: tag:deploy-docs
+    if: github.event_name != 'workflow_dispatch'
+
 
   deploy-docs:
     needs: prevent-no-label-execution
