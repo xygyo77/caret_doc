@@ -23,12 +23,14 @@ jobs:
     uses: autowarefoundation/autoware-github-actions/.github/workflows/prevent-no-label-execution.yaml@v1
     with:
       label: tag:deploy-docs
+    # 手動実行のときはジョブをスキップさせず、結果として成功扱い（outputs.run = 'true'）にするか、
+    # あるいは以下のように条件分岐します
     if: github.event_name != 'workflow_dispatch'
-
 
   deploy-docs:
     needs: prevent-no-label-execution
-    if: ${{ needs.prevent-no-label-execution.outputs.run == 'true' }}
+    # 手動実行のとき、または prevent-no-label-execution が実行されて条件を満たしたとき
+    if: always() && (github.event_name == 'workflow_dispatch' || needs.prevent-no-label-execution.result == 'success')
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
