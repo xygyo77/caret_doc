@@ -9,7 +9,7 @@ CARET is confirmed to run on the platforms shown in the following table with sup
 | Jazzy  | Ubuntu 24.04 | stable-2.13 | 3.12.x | Supported       |
 | Humble | Ubuntu 22.04 | stable-2.13 | 3.10.x | Supported (LTS) |
 
-> **Note:** If you are using Humble, please refer to the documentation for v0.7.3 ([v0.7.3 installation](https://tier4.github.io/caret_doc/v0.7.3/installation/installation/)).
+> **Note:** This document describes for Jazzy. If you are using Humble, please refer to the documentation for v0.7.3 ([v0.7.3 installation](https://tier4.github.io/caret_doc/v0.7.3/installation/installation/)).
 
 ## Installation
 
@@ -32,14 +32,14 @@ cd ros2_caret_ws
 
 CARET uses vcstool to construct workspaces.
 
-=== "jazzy"
+=== "Jazzy"
 
     ``` bash
     mkdir src
     vcs import src < caret.repos
     ```
 
-=== "humble"
+=== "Humble"
 
     ``` bash
     mkdir src
@@ -50,14 +50,14 @@ CARET uses vcstool to construct workspaces.
 3. Run `setup_caret.sh`.
 <prettier-ignore-end>
 
-=== "jazzy"
+=== "Jazzy"
 
     ``` bash
     export PIP_BREAK_SYSTEM_PACKAGES=1
     ./setup_caret.sh
     ```
 
-=== "humble"
+=== "Humble"
 
     ``` bash
     ./setup_caret.sh -d humble
@@ -67,14 +67,14 @@ CARET uses vcstool to construct workspaces.
 4. Build the workspace.
 <prettier-ignore-end>
 
-=== "jazzy"
+=== "Jazzy"
 
     ``` bash
     source /opt/ros/jazzy/setup.bash
     colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
     ```
 
-=== "humble"
+=== "Humble"
 
     ``` bash
     source /opt/ros/humble/setup.bash

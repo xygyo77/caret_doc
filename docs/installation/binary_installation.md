@@ -2,7 +2,7 @@
 
 <prettier-ignore-start>
 !!! warning "Warning"
-    Binaries for jazzy are not ready yet.
+    Binaries for Jazzy are not ready yet.
 <prettier-ignore-end>
 
 Some caret packages are available as Debian packages.  

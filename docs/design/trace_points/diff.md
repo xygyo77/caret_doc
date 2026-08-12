@@ -2,7 +2,7 @@
 
 <prettier-ignore-start>
 !!! note
-    In jazzy, all trace points required by CARET are already implemented, so there is no difference from ROS 2; however, this section has been retained to explain the historical background.
+    In Jazzy, all trace points required by CARET are already implemented, so there is no difference from ROS 2; however, this section has been retained to explain the historical background.
 <prettier-ignore-end>
 
 ## v0.2 vs galactic

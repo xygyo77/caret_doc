@@ -105,6 +105,7 @@ Trace duration          | 0:01:00
 ## Tracepoint summary
 
 This command displays all tracepoints included in the trace data and the number of events collected by tracepoints.
+These are the results from Humble.
 
 ```bash
 ros2 caret trace_point_summary <path-to-trace-data>
