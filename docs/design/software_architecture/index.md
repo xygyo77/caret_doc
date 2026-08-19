@@ -18,6 +18,7 @@ Only if it is not possible to add tracepoints by function hooking due to some co
 All of recorded events are stored to a set of trace data CTF-based. It is visualized for users to observe application's performance and behavior.
 
 [`caret_trace`](./caret_trace.md) is the main package for realizing recording. `caret_trace` collects events invoked in `rclcpp`, `rcl` and DDS. It is inconvenient to see actual time when data is consumed because data is consumed in a user code actually.
+
 See also
 
 - [Tracepoints](../trace_points/index.md)
