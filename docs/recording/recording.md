@@ -25,6 +25,10 @@ Two terminals are needed for this method; one for executing a target application
 
      ```sh
      ros2 run caret_demos end_to_end_sample
+     
+     or
+     
+     ros2 launch caret_demos end_to_end_sample.launch.py
      ```
 
 2. Open another terminal and start a LTTng session with the following commands
@@ -109,7 +113,7 @@ You can start LTTng session using ROS launch system. When you have started a tar
 
    ```sh
    ~/ros2_caret_ws/setenv_caret.bash
-   source ~/caret_ws/install/local_setup.bash
+   source ~/ros2_ws/install/local_setup.bash
 
    ros2 launch caret_demos end_to_end_sample_with_lttng_session.launch.py
    ```
